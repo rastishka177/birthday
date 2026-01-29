@@ -97,25 +97,6 @@
             overflow: hidden;
             margin-bottom: 15px;
             position: relative;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .photo-container:hover {
-            transform: scale(1.02);
-        }
-
-        .photo-container:hover::after {
-            content: "Нажми для увеличения";
-            position: absolute;
-            bottom: 10px;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 8px;
-            font-size: 0.9rem;
-            text-align: center;
         }
 
         /* Увеличенная фотография для мобильных устройств */
@@ -136,11 +117,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .our-photo:hover {
-            transform: scale(1.05);
         }
 
         .photo-caption {
@@ -148,54 +124,6 @@
             color: #7b1fa2;
             font-size: 1.1rem;
             margin-top: 10px;
-        }
-
-        /* Стили для полноэкранного режима */
-        .fullscreen-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .fullscreen-overlay.active {
-            display: flex;
-        }
-
-        .fullscreen-image {
-            max-width: 95%;
-            max-height: 95%;
-            object-fit: contain;
-            border-radius: 10px;
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
-        }
-
-        .close-fullscreen {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: white;
-            font-size: 2.5rem;
-            background: rgba(0, 0, 0, 0.5);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .close-fullscreen:hover {
-            background: rgba(233, 30, 99, 0.8);
         }
 
         .wishes {
@@ -276,6 +204,77 @@
             color: #5d4037;
             font-size: 1rem;
             line-height: 1.5;
+        }
+
+        .invitation {
+            background: linear-gradient(135deg, #ff9800 0%, #ff5722 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 50px 30px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .invitation::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: sparkle 3s linear infinite;
+        }
+
+        @keyframes sparkle {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .invitation h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .invitation-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .invitation p {
+            font-size: 1.8rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .invitation-details {
+            font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 25px auto;
+            max-width: 600px;
+            backdrop-filter: blur(5px);
+        }
+
+        .invitation-details i {
+            margin-right: 10px;
+            color: #ffeb3b;
+        }
+
+        .invitation-note {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-top: 20px;
+            opacity: 0.9;
         }
 
         .gallery {
@@ -391,6 +390,22 @@
                 font-size: 2.2rem;
             }
 
+            .invitation h2 {
+                font-size: 2.8rem;
+            }
+
+            .invitation p {
+                font-size: 1.5rem;
+            }
+
+            .invitation-details {
+                font-size: 1.3rem;
+            }
+
+            .invitation-note {
+                font-size: 1.2rem;
+            }
+
             .final-wish h2 {
                 font-size: 2.5rem;
             }
@@ -407,14 +422,6 @@
     </style>
 </head>
 <body>
-    <!-- Оверлей для полноэкранного просмотра фото -->
-    <div class="fullscreen-overlay" id="fullscreenOverlay">
-        <div class="close-fullscreen" id="closeFullscreen">
-            <i class="fas fa-times"></i>
-        </div>
-        <img src="photo.jpg" alt="Наша фотография" class="fullscreen-image" id="fullscreenImage">
-    </div>
-
     <div class="container">
         <header>
             <h1>С Днем Рождения! <i class="fas fa-birthday-cake birthday-icon"></i></h1>
@@ -426,10 +433,9 @@
         <div class="hero-section">
             <div class="photo-frame">
                 <h2>Наше лучшее фото</h2>
-                <div class="photo-container" id="photoContainer">
+                <div class="photo-container">
                     <img src="photo.jpg" alt="Наша фотография" class="our-photo">
                 </div>
-
             </div>
 
             <div class="wishes">
@@ -476,6 +482,20 @@
             </div>
         </div>
 
+        <div class="invitation">
+            <h2>Приглашение!</h2>
+            <div class="invitation-content">
+                <p>Настя, хочу позвать тебя на ужин!</p>
+
+                <div class="invitation-details">
+                    <p><i class="fas fa-calendar-alt"></i> <strong>Дата:</strong> 3 февраля 2026 года</p>
+                    <p><i class="fas fa-clock"></i> <strong>Время:</strong> 19:00</p>
+                    <p><i class="fas fa-map-marker-alt"></i> <strong>Место:</strong> Ресторан "Пламя и Вино"</p>
+                    <p><i class="fas fa-user"></i> <strong>План:</strong> Я зайду за тобой ровно в 19:00 и мы пойдем вместе</p>
+                </div>
+            </div>
+        </div>
+
         <footer>
             <div class="hearts">
                 <i class="fas fa-heart"></i>
@@ -498,41 +518,6 @@
         // Устанавливаем имя и дату
         document.getElementById('friendName').textContent = config.friendName + "!";
         document.getElementById('birthdayDate').textContent = config.birthdayDate + " " + config.year;
-
-        // Элементы для полноэкранного просмотра
-        const photoContainer = document.getElementById('photoContainer');
-        const fullscreenOverlay = document.getElementById('fullscreenOverlay');
-        const fullscreenImage = document.getElementById('fullscreenImage');
-        const closeFullscreen = document.getElementById('closeFullscreen');
-
-        // Открытие фото на весь экран
-        photoContainer.addEventListener('click', function() {
-            fullscreenOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Отключаем прокрутку
-        });
-
-        // Закрытие полноэкранного режима
-        closeFullscreen.addEventListener('click', function(e) {
-            e.stopPropagation();
-            fullscreenOverlay.classList.remove('active');
-            document.body.style.overflow = 'auto'; // Включаем прокрутку
-        });
-
-        // Закрытие при клике на оверлей
-        fullscreenOverlay.addEventListener('click', function(e) {
-            if (e.target === fullscreenOverlay) {
-                fullscreenOverlay.classList.remove('active');
-                document.body.style.overflow = 'auto'; // Включаем прокрутку
-            }
-        });
-
-        // Закрытие по клавише Escape
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && fullscreenOverlay.classList.contains('active')) {
-                fullscreenOverlay.classList.remove('active');
-                document.body.style.overflow = 'auto'; // Включаем прокрутку
-            }
-        });
 
         // Создаем конфетти
         function createConfetti() {
@@ -596,5 +581,6 @@
     </script>
 </body>
 </html>
+
 
 
