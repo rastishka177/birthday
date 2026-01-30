@@ -241,6 +241,10 @@
             margin-bottom: 20px;
             position: relative;
             z-index: 1;
+            text-align: center;
+            /* Убираем любые смещения для десктопов */
+            margin-left: 0;
+            margin-right: 0;
         }
 
         .invitation-content {
@@ -253,6 +257,7 @@
             line-height: 1.8;
             margin-bottom: 25px;
             font-weight: 600;
+            text-align: center;
         }
 
         .invitation-details {
@@ -263,11 +268,14 @@
             margin: 25px auto;
             max-width: 600px;
             backdrop-filter: blur(5px);
+            text-align: left;
         }
 
         .invitation-details i {
             margin-right: 10px;
             color: #ffeb3b;
+            width: 25px;
+            text-align: center;
         }
 
         .invitation-note {
@@ -275,6 +283,7 @@
             font-style: italic;
             margin-top: 20px;
             opacity: 0.9;
+            text-align: center;
         }
 
         .gallery {
@@ -323,6 +332,7 @@
             font-family: 'Dancing Script', cursive;
             font-size: 3.2rem;
             margin-bottom: 20px;
+            text-align: center;
         }
 
         .final-wish p {
@@ -330,6 +340,7 @@
             line-height: 1.8;
             max-width: 800px;
             margin: 0 auto 30px;
+            text-align: center;
         }
 
         .final-wish .heart {
@@ -392,31 +403,62 @@
 
             .invitation h2 {
                 font-size: 2.8rem;
+                /* Гарантированное центрирование на мобильных */
+                text-align: center;
+                margin-left: 0;
+                margin-right: 0;
+                padding-left: 0;
+                padding-right: 0;
+                display: block;
+                width: 100%;
+                left: 0;
+                right: 0;
             }
 
             .invitation p {
                 font-size: 1.5rem;
+                text-align: center;
             }
 
             .invitation-details {
                 font-size: 1.3rem;
+                text-align: left;
+                padding: 15px;
             }
 
             .invitation-note {
                 font-size: 1.2rem;
+                text-align: center;
             }
 
             .final-wish h2 {
                 font-size: 2.5rem;
+                text-align: center;
             }
 
             .final-wish p {
                 font-size: 1.2rem;
+                text-align: center;
             }
 
             /* Делаем фото горизонтальным на мобильных */
             .photo-frame {
                 max-width: 100%;
+            }
+        }
+
+        /* Дополнительные исправления для очень маленьких экранов */
+        @media (max-width: 480px) {
+            .invitation h2 {
+                font-size: 2.5rem;
+                /* Дополнительное центрирование для очень маленьких экранов */
+                transform: translateX(0);
+                position: relative;
+                left: 0;
+            }
+            
+            .invitation-details {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -581,6 +623,4 @@
     </script>
 </body>
 </html>
-
-
 
